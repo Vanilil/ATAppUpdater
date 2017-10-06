@@ -77,6 +77,17 @@
     }];
 }
 
+- (void)checkNewAppVersionSilent:(void(^)(BOOL newVersion, NSString *version))completion
+{
+    BOOL hasConnection = [self hasConnection];
+    if (!hasConnection) completion(NO, @"");
+    
+    [self checkNewAppVersion:^(BOOL newVersion, NSString *version) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+             completion(newVersion, version);
+        });
+    }];
+}
 
 #pragma mark - Private Methods
 
