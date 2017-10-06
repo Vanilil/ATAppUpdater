@@ -71,4 +71,7 @@
 /** Checks for newer version and show alert with a cancel button once per version. */
 - (void)showUpdateWithConfirmationOnce;
 
+/** Checks for newer version. */
+- (void)checkNewAppVersionSilent:(void(^)(BOOL newVersion, NSString *version))completion;
+
 @end
